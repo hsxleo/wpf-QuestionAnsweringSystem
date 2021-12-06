@@ -1,0 +1,70 @@
+﻿<Window x:Class="QuestionAnsweringSystem.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Icon="icon.jpg"
+        Title="RegisterForm" Height="600" Width="400" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize" WindowStyle="SingleBorderWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ComboBox Name="language" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                  SelectionChanged="language_SelectionChanged">
+            <ComboBoxItem Name="chinese" Content="中文简体"/>
+            <ComboBoxItem Name="english" Content="English" IsSelected="True"/>
+            <ComboBoxItem Name="japanese" Content="日本語"/>
+            <ComboBoxItem Name="korean" Content="한어"/>
+            <ComboBoxItem Name="french" Content="français"/>
+        </ComboBox>
+        <Grid Margin="30,0,30,30" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="{DynamicResource Account}"/>
+            <Label Content="{DynamicResource Password}" Grid.Row="1"/>
+            <Label Content="{DynamicResource Confirm}" Grid.Row="2"/>
+            <Label Content="{DynamicResource Id}" Grid.Row="3"/>
+            <Label Content="{DynamicResource Name}" Grid.Row="4"/>
+            <Label Content="{DynamicResource Gender}" Grid.Row="5"/>
+            <Label Content="{DynamicResource Specialty}" Grid.Row="6"/>
+            <Label Content="{DynamicResource Mail}" Grid.Row="7"/>
+            
+            <TextBox Grid.Column="1" Grid.Row="0" Name="tbAccount" Width="150" ToolTip="账号不得小于6位" />
+            <PasswordBox Grid.Column="1" Grid.Row="1" Name="pbPassword"  Width="150" ToolTip="密码不得小于6位"/>
+            <PasswordBox Grid.Column="1" Grid.Row="2" Name="pbConfirm"  Width="150" ToolTip="再次输入密码"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Name="tbId"  Width="150" ToolTip="输入你的学号或教工号"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Name="tbName"  Width="150" ToolTip="输入你的姓名"/>
+            <ComboBox Grid.Column="1" Grid.Row="5" Name="tbGender" Width="150" ToolTip="选择你的性别"
+                      Style="{StaticResource MaterialDesignComboBox}" FontSize="15">
+                <ComboBoxItem Content="{DynamicResource Man}"/>
+                <ComboBoxItem Content="{DynamicResource Woman}"/>
+            </ComboBox>
+            <TextBox Grid.Column="1" Grid.Row="6" Name="tbSpecialty" Width="150" ToolTip="输入你的专业"/>
+            <TextBox Grid.Column="1" Grid.Row="7" Name="tbMail" Width="150" ToolTip="输入你的邮箱"/>
+            <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" ToolTip="选择你的身份">
+                <RadioButton Name="rbRoleStudent" GroupName="rbRole" Width="130" Height="30" Content="{DynamicResource Student}" Margin="40,0,0,0"/>
+                <RadioButton Name="rbRoleTeacher" GroupName="rbRole" Width="130" Height="30" Content="{DynamicResource Teacher}"/>
+                <RadioButton Name="rbRoleAdmin" GroupName="rbRole" Width="0" Height="0" Content="{DynamicResource Admin}"/>
+            </StackPanel>
+            <Button Name="tbRegister" Content="{DynamicResource Register}" Grid.Row="9"
+                    Grid.ColumnSpan="2" Margin="30,0,0,0" Click="tbRegister_Click"/>
+        </Grid>
+    </Grid>
+</Window>

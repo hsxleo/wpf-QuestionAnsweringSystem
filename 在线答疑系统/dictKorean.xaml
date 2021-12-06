@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="LoginTitle">로그 인 창</sys:String>
+    <sys:String x:Key="Admin">관리인</sys:String>
+    <sys:String x:Key="Teacher">교사</sys:String>
+    <sys:String x:Key="Student">학생</sys:String>
+    <sys:String x:Key="Account">계좌 번호:</sys:String>
+    <sys:String x:Key="Password">비밀 번호:</sys:String>
+    <sys:String x:Key="Confirm">확인 하 다:</sys:String>
+    <sys:String x:Key="Gender">성별:</sys:String>
+    <sys:String x:Key="Mail">우편함:</sys:String>
+    <sys:String x:Key="Id">학번:</sys:String>
+    <sys:String x:Key="Login">로그인</sys:String>
+    <sys:String x:Key="Register">등기</sys:String>
+    <sys:String x:Key="Name">성명:</sys:String>
+    <sys:String x:Key="Man">남자</sys:String>
+    <sys:String x:Key="Woman">여자</sys:String>
+    <sys:String x:Key="Specialty">전공:</sys:String>
+    <sys:String x:Key="Personal Information">개인 정보</sys:String>
+    <sys:String x:Key="Question">문제</sys:String>
+    <sys:String x:Key="Answering">대답</sys:String>
+    <sys:String x:Key="MyQuestion">나의 문제</sys:String>
+    <sys:String x:Key="Administration">관리 시스템</sys:String>
+    <sys:String x:Key="About developers">개발자들에게</sys:String>
+    <sys:String x:Key="InputQuestion">질문 번호를 입력하십시오</sys:String>
+    <sys:String x:Key="Keyword">키워드</sys:String>
+    <sys:String x:Key="Role">역할</sys:String>
+    <sys:String x:Key="Select">조회</sys:String>
+    <sys:String x:Key="UpLoad">업로드</sys:String>
+    <sys:String x:Key="Refresh">새로 고침</sys:String>
+    <sys:String x:Key="HeadImage">얼굴을</sys:String>
+</ResourceDictionary>

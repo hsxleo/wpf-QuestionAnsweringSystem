@@ -1,0 +1,336 @@
+﻿<Window x:Class="QuestionAnsweringSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:QuestionAnsweringSystem"
+        mc:Ignorable="d" Icon="icon.jpg"
+        Title="QuestionAnsweringSystem" Height="600" Width="1000" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize" WindowStyle="ThreeDBorderWindow">
+    <Window.Resources>
+        <local:User x:Key="User" />
+        <Style x:Key="tbStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignComboBoxEditableTextBox}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="889*"/>
+            <ColumnDefinition Width="96*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="3" Margin="0,0,-0.4,0.4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <!--个人信息栏的绘制-->
+            <Grid Grid.Row="0" Grid.Column="0" Background="AliceBlue" Margin="0,0,0,0.4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--头像-->
+                <Image Source="{Binding Source={StaticResource User},Path=HeadImage}" MouseLeftButtonDown="headshot_MouseLeftButtonDown"
+                        Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Name="headshot" Stretch="Fill" Width="80"  Grid.RowSpan="3">
+                    <Image.Clip>
+                        <EllipseGeometry RadiusX="50" RadiusY="50" Center="40,40"/>
+                    </Image.Clip>
+                </Image>
+                <TextBlock Text="{Binding Source={StaticResource User},Path=Role}" Grid.Column="1" Grid.Row="0" Name="tkRole"  Background="LightBlue"/>
+                <TextBlock Text="{Binding Source={StaticResource User},Path=Id}" Grid.Column="1" Grid.Row="1" Name="tkId" />
+                <TextBlock Text="{Binding Source={StaticResource User},Path=Name}" Grid.Column="1" Grid.Row="2" Name="tkName" />
+            </Grid>
+            <!--标题的绘制-->
+            <Grid  Grid.Row="0" Grid.Column="1" Background="AliceBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="122*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Text="QuestionAnsweringSystem" Grid.RowSpan="2"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Kunstler Script 常规" FontSize="50" Margin="0,26,0,25.4"/>
+                <ComboBox Grid.Column="1" Name="language" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                  SelectionChanged="language_SelectionChanged" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
+                    <ComboBoxItem Name="chinese" Content="中文简体"/>
+                    <ComboBoxItem Name="english" Content="English" IsSelected="True"/>
+                    <ComboBoxItem Name="japanese" Content="日本語"/>
+                    <ComboBoxItem Name="korean" Content="한어"/>
+                    <ComboBoxItem Name="french" Content="français"/>
+                </ComboBox>
+                <Button Name="refresh" Content="{DynamicResource Refresh}" Width="100" Grid.Column="1" Grid.Row="1" Click="refresh_Click" Margin="17.6,12.4,7.4,12.4"/>
+            </Grid>
+
+            <!--左侧菜单栏和主体内容块的绘制-->
+            <TabControl Grid.Row="1" Grid.Column="0" 
+                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" Grid.ColumnSpan="2">
+
+                <TabItem Header="{DynamicResource Question}" Style="{StaticResource MaterialDesignNavigationRailTabItem}" Width="250">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource InputQuestion}" HorizontalAlignment="Left" Margin="30,30,0,0"/>
+                        <TextBox Name="tbQuestion" Grid.Row="1" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                 Width="680" Height="250" Margin="30,0,0,0" HorizontalAlignment="Left"
+                                 TextWrapping="Wrap" MaxWidth="650"/>
+                        <Button Name="btUpload" Content="{DynamicResource UpLoad}" Grid.Row="2" Margin="80,0,80,0" Click="btUpload_Click"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="{DynamicResource Answering}" Style="{StaticResource MaterialDesignNavigationRailTabItem}" Width="250">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="6*"/>
+                        </Grid.RowDefinitions>
+                        <!--查询方式-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource Id}"/>
+                            <TextBox Grid.Column="1" Name="tbSelectId" Width="120"/>
+                            <Label Grid.Column="2" Content="{DynamicResource Name}"/>
+                            <TextBox Grid.Column="3" Name="tbSelectName" Width="120"/>
+                            <Label Grid.Column="4" Content="{DynamicResource Specialty}"/>
+                            <TextBox Grid.Column="5" Name="tbSelectSpecialty" Width="120"/>
+                            <Label Grid.Row="1" Content="{DynamicResource Keyword}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Name="tbSelectKeyword" Width="470"/>
+                            <Button Grid.Row="1" Grid.Column="6" Name="btSelect" Content="{DynamicResource Select}" Click="btSelect_Click"/>
+                        </Grid>
+                        <ListBox Name="LbAnswering" Grid.Row="1" Width="700" Height="300" Foreground="Black"
+                        ItemContainerStyle="{StaticResource MaterialDesignCardsListBoxItem}" SelectionChanged="LbAnswering_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="160"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding Path = headimage}" Height="30" HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center" Name="LbHeadshot" Stretch="Fill" Width="30">
+                                            <Image.Clip>
+                                                <EllipseGeometry RadiusX="15" RadiusY="15" Center="15,15"/>
+                                            </Image.Clip>
+                                        </Image>
+                                        <TextBlock Grid.Column="1" Text="{Binding Path=role}" Foreground="Green" FontSize="20" Width="80"
+                                               Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Path=name}" Foreground="Black" FontSize="20" Width="60"
+                                                   Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding Path=qid}" Width="0" Height="0"/>
+                                        <TextBlock Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Path=qcontent}"
+                                                 HorizontalAlignment="Left" MaxWidth="650" TextWrapping="Wrap" VerticalAlignment="Top"
+                                                 Style="{StaticResource MaterialDesignCaptionTextBlock}" MinHeight="40" FontSize="20" Padding="20"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="{DynamicResource MyQuestion}" Style="{StaticResource MaterialDesignNavigationRailTabItem}" Width="250" Initialized="TabItem_Initialized">
+                    <ListBox Name="LbMyQuestion" Grid.Row="1" Width="700" Height="400" Foreground="Black"
+                        ItemContainerStyle="{StaticResource MaterialDesignCardsListBoxItem}" SelectionChanged="LbMyQuestion_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="160"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding Path = headimage}" Height="30" HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center" Name="LbHeadshot" Stretch="Fill" Width="30">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="15" RadiusY="15" Center="15,15"/>
+                                        </Image.Clip>
+                                    </Image>
+                                    <TextBlock Grid.Column="1" Text="{Binding Path=role}" Foreground="Green" FontSize="20" Width="80"
+                                               Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Path=name}" Foreground="Black" FontSize="20" Width="60"
+                                                   Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Path=qcontent}"
+                                                 HorizontalAlignment="Left" MaxWidth="650" TextWrapping="Wrap" VerticalAlignment="Top"
+                                                 Style="{StaticResource MaterialDesignCaptionTextBlock}" MinHeight="40" FontSize="20" Padding="20"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+                <TabItem Header="{DynamicResource Personal Information}" Style="{StaticResource MaterialDesignNavigationRailTabItem}" Width="250" Initialized="TabItem_Initialized_1">
+                    <Grid Name="PersonalInformation">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource Personal Information}" Grid.Row="0" Grid.ColumnSpan="2" Background="LightBlue"/>
+                        <Label Content="{DynamicResource Id}" Grid.Row="1"/>
+                        <Label Content="{DynamicResource Name}" Grid.Row="2"/>
+                        <Label Content="{DynamicResource Gender}" Grid.Row="3"/>
+                        <Label Content="{DynamicResource Specialty}" Grid.Row="4"/>
+                        <Label Content="{DynamicResource Mail}" Grid.Row="5"/>
+                        <Label Content="{DynamicResource Role}" Grid.Row="6"/>
+                        <Label Grid.Column="1" Grid.Row="6" Content="{DynamicResource Role}" Width="150" FontSize="20" Height="30"/>
+                        <TextBox FontSize="15" Style="{StaticResource tbStyle}" Text="{Binding id}" Grid.Column="1" Grid.Row="1" Name="tbId"  Width="150" />
+                        <TextBox FontSize="15" Style="{StaticResource tbStyle}" Text="{Binding name}" Grid.Column="1" Grid.Row="2" Name="tbName"  Width="150" ToolTip="输入你的姓名"/>
+                        <ComboBox Grid.Column="1" Grid.Row="3" Name="tbGender" Width="80" ToolTip="选择你的性别" 
+                      Style="{StaticResource MaterialDesignDataGridComboBox}" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
+                            <ComboBoxItem Content="{DynamicResource Man}" Name="man"/>
+                            <ComboBoxItem Content="{DynamicResource Woman}" Name="woman"/>
+                        </ComboBox>
+                        <TextBox FontSize="15" Style="{StaticResource tbStyle}" Text="{Binding specialty}" Grid.Column="1" Grid.Row="4" Name="tbSpecialty" Width="150" ToolTip="输入你的专业"/>
+                        <TextBox FontSize="15" Style="{StaticResource tbStyle}" Text="{Binding mail}" Grid.Column="1" Grid.Row="5" Name="tbMail" Width="300" ToolTip="输入你的邮箱"/>
+                        <Button Name="tbChange" Content="{DynamicResource UpLoad}" Grid.Row="9"
+                    Grid.ColumnSpan="2" Margin="30,0,0,0" Click="tbChange_Click" Width="300"/>
+                        <Label Content="{DynamicResource HeadImage}" Grid.Row="0" Grid.Column="2" FontSize="20"/>
+                        <Image Name="headImage" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Source="{Binding Source={StaticResource User},Path=HeadImage}"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="{DynamicResource Administration}" Style="{StaticResource MaterialDesignNavigationRailTabItem}" Width="250">
+                    <Grid Name="Administration">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0"  Width="120" Name="tbModAccount"/>
+                        <Button Grid.Row="0" Grid.Column="1" Width="120" Name="tbModSelect" Content="{DynamicResource Select}" Click="tbModSelect_Click" />
+                        <Label Content="{DynamicResource Password}" Grid.Row="1"/>
+                        <Label Content="{DynamicResource Id}" Grid.Row="2"/>
+                        <Label Content="{DynamicResource Name}" Grid.Row="3"/>
+                        <Label Content="{DynamicResource Gender}" Grid.Row="4"/>
+                        <Label Content="{DynamicResource Specialty}" Grid.Row="5"/>
+                        <Label Content="{DynamicResource Mail}" Grid.Row="6"/>
+                        <Label Content="Role:" Grid.Row="7"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Width="130" Text="{Binding password}" Name="tbModPassword"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Width="130" Text="{Binding id}" Name="tbModId"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Width="130" Text="{Binding name}" Name="tbModName"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Width="130" Text="{Binding gender}" Name="tbModGender"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Width="130" Text="{Binding specialty}" Name="tbModSpecialty"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Width="130" Text="{Binding mail}" Name="tbModMail"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Width="130" Text="{Binding role}" Name="tbModRole"/>
+                        <Button Name="btModification" Content="{DynamicResource UpLoad}" Grid.Row="8" Grid.ColumnSpan="2" Width="300"  Click="btModification_Click"/>
+                        <Label Content="{DynamicResource HeadImage}" Grid.Row="0" Grid.Column="2" FontSize="20"/>
+                        <Image Name="modHeadImage" Grid.Row="0" Grid.Column="2" Grid.RowSpan="8" Source="{Binding headimage}"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="{DynamicResource About developers}" Style="{StaticResource MaterialDesignNavigationRailTabItem}" Width="250" 
+                         GotFocus="TabItem_GotFocus" LostFocus="TabItem_LostFocus">
+                    <Grid Background="SkyBlue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="2.5*"/>
+                            <RowDefinition Height="2.5*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="宇宙无敌绝绝子 真丶元气小组" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="30" Grid.ColumnSpan="4"/>
+                        <Image Grid.Row="1" Source="王裕鑫.jpg" Margin="10"/>
+                        <Image Grid.Row="2" Source="朱琪.jpg" Margin="20,19.6,0.4,0"/>
+                        <Image Grid.Row="1" Grid.Column="2" Source="朱亚飞.jpg" Margin="10"/>
+                        <Image Grid.Row="2" Grid.Column="2" Source="黄士祥.jpg" Margin="20.2,19.6,0.4,0"/>
+
+                        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="女明星" FontSize="25"/>
+                            <TextBlock Grid.Row="1" MaxWidth="150" TextWrapping="Wrap" FontSize="18" Text="拥有着掌握银河系的暗黑魔法，心里永远有着一个远方,她梦里的家乡-->哈拉木吉星球"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="3" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="飞飞姐" FontSize="25"/>
+                            <TextBlock Grid.Row="1" MaxWidth="150" TextWrapping="Wrap" FontSize="18" Text="拥有来自太阳的力量,在宇宙中散发光的力量,负责维护整个世界的和平和安定"/>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="1" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="琪丶美惠子" FontSize="25"/>
+                            <TextBlock Grid.Row="1" MaxWidth="150" TextWrapping="Wrap" FontSize="18" Text="拥有来自外星人类的最高文明,拥有者性别切换的超级魔法,负责美丽！！！"/>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="3" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="404 ERROR!" FontSize="25"/>
+                            <TextBlock Grid.Row="1" MaxWidth="150" TextWrapping="Wrap" FontSize="18" Text="该图片涉及赌博、诈骗、暴力、血腥、色情等不良信息,不支持显示"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
+    

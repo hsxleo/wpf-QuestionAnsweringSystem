@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="LoginTitle">ログインウィンドウ</sys:String>
+    <sys:String x:Key="Admin">管理者</sys:String>
+    <sys:String x:Key="Teacher">教師</sys:String>
+    <sys:String x:Key="Student">学生</sys:String>
+    <sys:String x:Key="Account">アカウント:</sys:String>
+    <sys:String x:Key="Password">パスワード:</sys:String>
+    <sys:String x:Key="Confirm">パスワードを確認する:</sys:String>
+    <sys:String x:Key="Gender">性別:</sys:String>
+    <sys:String x:Key="Mail">メールボックス:</sys:String>
+    <sys:String x:Key="Id">学号/教師号:</sys:String>
+    <sys:String x:Key="Login">ログイン</sys:String>
+    <sys:String x:Key="Register">登録する</sys:String>
+    <sys:String x:Key="Name">名前:</sys:String>
+    <sys:String x:Key="Man">男の人</sys:String>
+    <sys:String x:Key="Woman">女の人</sys:String>
+    <sys:String x:Key="Specialty">専攻:</sys:String>
+    <sys:String x:Key="Personal Information">個人情報</sys:String>
+    <sys:String x:Key="Question">質問</sys:String>
+    <sys:String x:Key="Answering">答え</sys:String>
+    <sys:String x:Key="MyQuestion">私の質問</sys:String>
+    <sys:String x:Key="Administration">管理システム</sys:String>
+    <sys:String x:Key="About developers">開発スタッフに</sys:String>
+    <sys:String x:Key="InputQuestion">質問を入力してください</sys:String>
+    <sys:String x:Key="Keyword">キーワード</sys:String>
+    <sys:String x:Key="Role">役柄</sys:String>
+    <sys:String x:Key="Select">査問する</sys:String>
+    <sys:String x:Key="UpLoad">アップロードする</sys:String>
+    <sys:String x:Key="Refresh">刷新する</sys:String>
+    <sys:String x:Key="HeadImage">顔</sys:String>
+</ResourceDictionary>

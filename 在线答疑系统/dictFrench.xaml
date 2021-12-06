@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="LoginTitle">Fenêtre</sys:String>
+    <sys:String x:Key="Language">French</sys:String>
+    <sys:String x:Key="Admin">Administrateur</sys:String>
+    <sys:String x:Key="Teacher">Enseignant</sys:String>
+    <sys:String x:Key="Student">étudiant</sys:String>
+    <sys:String x:Key="Account">NuméroDeCompte:</sys:String>
+    <sys:String x:Key="Password">MotDePasse:</sys:String>
+    <sys:String x:Key="Confirm">Confirmer:</sys:String>
+    <sys:String x:Key="Gender">Sexe:</sys:String>
+    <sys:String x:Key="Mail">E-mail:</sys:String>
+    <sys:String x:Key="Id">IRAs:</sys:String>
+    <sys:String x:Key="Login">Connecter</sys:String>
+    <sys:String x:Key="Register">Enregistrement</sys:String>
+    <sys:String x:Key="Name">Nom:</sys:String>
+    <sys:String x:Key="Man">UnHomme</sys:String>
+    <sys:String x:Key="Woman">Femme</sys:String>
+    <sys:String x:Key="Specialty">professionnels:</sys:String>
+    <sys:String x:Key="Personal Information">Informations àCaractèrePersonnel</sys:String>
+    <sys:String x:Key="Question">LaQuestion</sys:String>
+    <sys:String x:Key="Answering">réponse</sys:String>
+    <sys:String x:Key="MyQuestion">MaQuestion</sys:String>
+    <sys:String x:Key="Administration">SystèmeDeGestion</sys:String>
+    <sys:String x:Key="About developers">PourLesDéveloppeurs</sys:String>
+    <sys:String x:Key="InputQuestion">Entrez votre question, s’il vous plaît</sys:String>
+    <sys:String x:Key="Keyword">mots-clés</sys:String>
+    <sys:String x:Key="Role">Le rôle</sys:String>
+    <sys:String x:Key="Select">enquêtes</sys:String>
+    <sys:String x:Key="UpLoad">télécharger</sys:String>
+    <sys:String x:Key="Refresh">Mise à jour</sys:String>
+    <sys:String x:Key="HeadImage">profil</sys:String>
+</ResourceDictionary>
